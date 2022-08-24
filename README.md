@@ -1,5 +1,5 @@
-# microservice-fn-py [![CircleCI](https://badgen.net/circleci/github/SFDigitalServices/microservice-fn-py/main)](https://circleci.com/gh/SFDigitalServices/microservice-fn-py) [![Coverage Status](https://coveralls.io/repos/github/SFDigitalServices/microservice-fn-py/badge.svg?branch=main)](https://coveralls.io/github/SFDigitalServices/microservice-fn-py?branch=main)
-Azure serverless python function microservice template
+# service-ci-fn-py [![CircleCI](https://badgen.net/circleci/github/SFDigitalServices/service-ci-fn-py/main)](https://circleci.com/gh/SFDigitalServices/service-ci-fn-py) [![Coverage Status](https://coveralls.io/repos/github/SFDigitalServices/service-ci-fn-py/badge.svg?branch=main)](https://coveralls.io/github/SFDigitalServices/service-ci-fn-py?branch=main)
+Service CI Azure serverless python function microservice
 
 ## `api/status/http`
 Query http status of the serverless function.
@@ -11,6 +11,21 @@ $ curl https://<host>/api/status/http
 
 {"status": "success", "data": {"message": "200 OK"}}
 ```
+
+## `api/run/jobs`
+#### Query Parameters ####
+`project`: name of project configuration  
+`job`: name of job   
+`step`: job step to start  
+
+### Query
+Example
+```
+$ curl https://<host>/api/run/jobs?project=sample_proj_config&job=job1&step=1
+
+{"status": "success", "data": {...}}
+```
+
 
 ## Deployment notes
 #### :warning: [Linux Consumption] Successful slot swaps automatically reverted after a few minutes :warning:
