@@ -13,8 +13,8 @@ class Step():
         method_token = uses_token[1].split('@v')
         method = method_token[0]
         version = int(method_token[1])
-        mod = importlib.import_module(f".{mod_name}", "mods")
         print(f"Step.run {mod_name}")
+        mod = importlib.import_module(f".{mod_name}", "mods")
         print("--- step:data ---")
         print(data)
         print("--- step:content ---")
