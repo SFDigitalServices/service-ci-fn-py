@@ -42,26 +42,28 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
                     if 'step' in req.params and 'steps' in data_job:
                         step = int(req.params['step'])-1
-                        step_last = len(data_job['steps'])-1
-                        if 0 <= step <= step_last:
+                        step_len = len(data_job['steps'])
+                        limit = int(req.params['limit']) \
+                            if 'limit' in req.params and \
+                                int(req.params['limit']) < (step_len - step) \
+                            else (step_len - step)
+                        print(f"Step {step} Limit {limit} step_len {step_len}")
 
-                            data_step = data_job['steps'][step]
-                            out = Step.run(data_step, req.get_json())
+                        if 0 <= step < step_len:
+                            step_input = req.get_json()
 
-                            if step + 1 <= step_last:
-                                # trigger next step
-                                print("next step")
-                                data_step_next = data_job['steps'][step+1]
-                                print(data_step_next)
-                                if 'async' in data_step_next and data_step_next['async']:
+                            for idx in range(step, step+limit):
+                                print(f"Index {idx} out of {step+limit}")
+                                data_step = data_job['steps'][idx]
+                                if 'async' in data_step and data_step['async']:
                                     # running step async
                                     print("running async")
                                     thread = threading.Thread(
                                         target=Step.run,
-                                        args=(data_step_next, out))
+                                        args=(data_step, step_input))
                                     thread.start()
                                 else:
-                                    out = Step.run(data_step_next, out)
+                                    step_input = out = Step.run(data_step, step_input)
 
                 return func_jsend_response(out, headers=headers, status_code=200)
 
