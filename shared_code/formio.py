@@ -28,7 +28,8 @@ class Formio():
 
         response = requests.get(
             url,
-            headers=headers
+            headers=headers,
+            timeout=5
         )
         response.raise_for_status()
 

@@ -17,8 +17,8 @@ def process(data: dict, content: dict, method: str):
         row = airtable.get(content['airtable_record_id'])
         return row
     if method == 'insert' :
-        airtable_id = airtable.insert(content)
-        return airtable_id
+        airtable_record = airtable.insert(content)
+        return airtable_record
 
     return content
 

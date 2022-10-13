@@ -25,9 +25,9 @@ def process(data: dict, content: dict, method: str):
         if response.status_code == 200:
             try:
                 response_json = json.loads(response.content)
-            #pylint: disable=broad-except
+            # pylint: disable=broad-except
             except Exception as err:
-                print(f"jsonata.process Eception: {err}")
+                print(f"jsonata.process Exception: {err}")
                 response_json = {"data": str(response.content, 'utf-8')}
 
         return response_json
