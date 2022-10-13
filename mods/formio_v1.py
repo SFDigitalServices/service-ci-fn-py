@@ -1,10 +1,10 @@
-""" formio mod """
+""" formio v1 mod """
 import os
 from shared_code.formio import Formio
 
-def process(data: dict, content: dict, method: str, version: int):
+def process(data: dict, content: dict, method: str):
     """ process content """
-    if method == 'get_submission' and version == 1:
+    if method == 'get_submission':
         form_id = data['with']['FORMIO_FORM_ID']
         form_base = data['with']['FORMIO_BASE']
         submission = Formio.get_formio_submission_by_id(

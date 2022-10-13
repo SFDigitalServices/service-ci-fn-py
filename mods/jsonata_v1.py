@@ -1,11 +1,11 @@
-""" jsonata mod """
+""" jsonata v1 mod """
 import os
 import json
 import requests
 
-def process(data: dict, content: dict, method: str, version: int):
+def process(data: dict, content: dict, method: str):
     """ process content """
-    if method == "eval" and version == 1:
+    if method == "eval":
         endpoint = os.environ.get('JSONATA_FN_JS_URL')
         jsonata = data['with']['JSONATA_MAPPING']
         url = f"{endpoint}/api/eval"

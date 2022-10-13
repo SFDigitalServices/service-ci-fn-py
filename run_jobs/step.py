@@ -14,12 +14,12 @@ class Step():
         method = method_token[0]
         version = int(method_token[1])
         print(f"Step.run {mod_name}")
-        mod = importlib.import_module(f".{mod_name}", "mods")
+        mod = importlib.import_module(f".{mod_name}_v{version}", "mods")
         print("--- step:data ---")
         print(data)
         print("--- step:content ---")
         print(content)
-        out = mod.process(data, content, method, version)
+        out = mod.process(data, content, method)
         print ("--- step:out ---")
         print (out)
         return out
