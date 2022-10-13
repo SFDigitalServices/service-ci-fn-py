@@ -17,7 +17,8 @@ def process(data: dict, content: dict, method: str, version: int):
         }
         print(url)
         print(content)
-        response = requests.post(url, headers=headers, data=json.dumps(content), params=params)
+        response = requests.post(url, headers=headers, data=json.dumps(content), \
+            params=params, timeout=5)
         response_json = content
         print(response.status_code)
         print(response.content)
