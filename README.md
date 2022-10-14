@@ -1,5 +1,6 @@
 # service-ci-fn-py [![CircleCI](https://badgen.net/circleci/github/SFDigitalServices/service-ci-fn-py/main)](https://circleci.com/gh/SFDigitalServices/service-ci-fn-py) [![Coverage Status](https://coveralls.io/repos/github/SFDigitalServices/service-ci-fn-py/badge.svg?branch=main)](https://coveralls.io/github/SFDigitalServices/service-ci-fn-py?branch=main)
-Service CI Azure serverless python function microservice
+Service CI Azure serverless python function microservice  
+Lightweight configuration file-based workflow system to enable continuous integration for services interacting various APIs and Webhooks. 
 
 ## `api/status/http`
 Query http status of the serverless function.
@@ -25,6 +26,15 @@ Example
 $ curl https://<host>/api/run/jobs?project=sample_proj_config&job=job1&step=1&limit=1
 
 {"status": "success", "data": {...}}
+```
+
+## MODS
+This microservice run of concept of leveraging individual modules ([`mods`](./mods)) to interact with various external systems. A mod to used in a `step` within a `job`. A simple one step job that uses version 1 of the email mod to send email looks like this:
+```
+jobs:
+  job1:
+    steps:
+        - uses: email/send@v1
 ```
 
 
