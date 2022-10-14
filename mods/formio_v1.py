@@ -4,7 +4,7 @@ from shared_code.formio import Formio
 
 def process(data: dict, content: dict, method: str):
     """ process content """
-    if method == 'get_submission':
+    if method == 'submission-get':
         form_id = data['with']['FORMIO_FORM_ID']
         form_base = data['with']['FORMIO_BASE']
         submission = Formio.get_formio_submission_by_id(
