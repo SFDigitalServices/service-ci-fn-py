@@ -17,11 +17,12 @@ $ curl https://<host>/api/status/http
 `project`: name of project configuration  
 `job`: name of job   
 `step`: job step to start  
+`limit`: limit the number of steps to run
 
 ### Query
 Example
 ```
-$ curl https://<host>/api/run/jobs?project=sample_proj_config&job=job1&step=1
+$ curl https://<host>/api/run/jobs?project=sample_proj_config&job=job1&step=1&limit=1
 
 {"status": "success", "data": {...}}
 ```
