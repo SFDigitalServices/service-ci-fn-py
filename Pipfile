@@ -15,6 +15,7 @@ azure-functions = "*"
 requests = "*"
 pyjsend = "*"
 airtable-python-wrapper = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.9"
