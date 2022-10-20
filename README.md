@@ -36,7 +36,18 @@ jobs:
     steps:
         - uses: email/send@v1
 ```
-
+### List of MODs available
+* `airtable@v1`: Connects to [Airtable](https://airtable.com/)
+    * `get`: gets an Airtable record
+    * `insert`: insert an record into Airtable base
+* `email@v1`: Connects to [Email microservice](https://github.com/SFDigitalServices/email-microservice-py)
+    * `send`: send an email
+* `formio@v1`: Connects to [Form.io](https://www.form.io/)
+    * `submission-get`: get a form submission
+* `jsonata@v1`: Connects to [JSONata microservice](https://github.com/SFDigitalServices/jsonata-fn-js)
+    * `eval`: evaluates JSONata query [[try](http://try.jsonata.org/)]
+* `pts@v1`: Connects to [Permit Tracking System (PTS) microservice](https://github.com/SFDigitalServices/pts-microservice-fn-py)
+    * `permit-create`: creates a building permit application
 
 ## Deployment notes
 #### :warning: [Linux Consumption] Successful slot swaps automatically reverted after a few minutes :warning:
