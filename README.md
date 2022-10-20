@@ -39,7 +39,7 @@ jobs:
 ### List of MODs available
 * `airtable@v1`: Connects to [Airtable](https://airtable.com/)
     * `get`: gets an Airtable record
-    * `insert`: insert an record into Airtable base
+    * `insert`: insert a record into Airtable base
 * `email@v1`: Connects to [Email microservice](https://github.com/SFDigitalServices/email-microservice-py)
     * `send`: send an email
 * `formio@v1`: Connects to [Form.io](https://www.form.io/)
