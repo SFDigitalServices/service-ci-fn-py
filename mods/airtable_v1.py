@@ -6,7 +6,7 @@ from airtable import Airtable
 def process(data: dict, content: dict, method: str):
     """ process content """
 
-    base = data['with']['AIRTABLE_BASE_KEY']
+    base = data['with']['AIRTABLE_BASE_ID']
     table = data['with']['AIRTABLE_TABLE_NAME']
     key = os.environ.get('AIRTABLE_API_KEY')
 
