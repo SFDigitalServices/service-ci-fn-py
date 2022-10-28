@@ -71,5 +71,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     #pylint: disable=broad-except
     except Exception as err:
         logging.error("Run Step error occurred: %s", traceback.format_exc())
-        msg_error = f"{err}"
-        return func_jsend_response(msg_error, status_code=500)
+        return func_jsend_response(f"{err}", status_code=500)
