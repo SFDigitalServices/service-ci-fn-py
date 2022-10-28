@@ -26,7 +26,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "Access-Control-Allow-Origin": "*"
         }
 
-        if 'project' in req.params:
+        if 'project' in req.params and 'job' in req.params:
             project_config_folder = os.getenv('PROJECT_CONFIG_FOLDER')
             project_config = f"{project_config_folder}/{req.params['project']}.yml"
 
@@ -35,8 +35,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 config_json = yaml.load(config_yml, Loader=yaml.SafeLoader)
                 out = data = config_json
 
-                if 'job' in req.params and 'jobs' in data \
-                    and req.params['job'] in data['jobs']:
+                if 'jobs' in data and req.params['job'] in data['jobs']:
 
                     out = data_job = data['jobs'][req.params['job']]
 
@@ -67,7 +66,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
                 return func_jsend_response(out, headers=headers, status_code=200)
 
-        raise ValueError("Missing Project")
+        raise ValueError("Missing Project and/or Job")
 
     #pylint: disable=broad-except
     except Exception as err:
