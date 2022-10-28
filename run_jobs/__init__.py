@@ -40,8 +40,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
                     out = data_job = data['jobs'][req.params['job']]
 
-                    if 'step' in req.params and 'steps' in data_job:
-                        step = int(req.params['step'])-1
+                    if 'steps' in data_job:
+                        step = int(req.params['step'])-1 if 'step' in req.params else 0
                         step_len = len(data_job['steps'])
                         limit = int(req.params['limit']) \
                             if 'limit' in req.params and \
