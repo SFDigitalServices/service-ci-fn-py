@@ -14,12 +14,14 @@ def process(data: dict, content: dict, method: str):
     airtable = get_airtable(base, table, key)
 
     if method == 'get' :
-        row = airtable.get(content['airtable_record_id'])
+        row = airtable.get(content['id'])
         return row
     if method == 'insert' :
         airtable_record = airtable.insert(content)
         return airtable_record
-
+    if method == 'update' :
+        update = airtable.update(content['id'], content['fields'])
+        return update
     return content
 
 def get_airtable(base, table, key):
