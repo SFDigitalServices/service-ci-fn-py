@@ -52,7 +52,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                             step_input = req.get_json()
 
                             for idx in range(step, step+limit):
-                                print(f"Index {idx} out of {step+limit}")
+                                print(f"Index {idx+1} out of {step+limit}")
                                 data_step = data_job['steps'][idx]
                                 if 'async' in data_step and data_step['async']:
                                     # running step async
