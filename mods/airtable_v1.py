@@ -3,7 +3,7 @@ import os
 from airtable import Airtable
 
 
-def process(data: dict, content: dict, method: str):
+def process(data: dict, content: dict, method: str, _params:dict):
     """ process content """
 
     base = data['with']['AIRTABLE_BASE_ID']

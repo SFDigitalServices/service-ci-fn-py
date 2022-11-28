@@ -3,7 +3,7 @@ import os
 import json
 import requests
 
-def process(data: dict, content: dict, method: str):
+def process(data: dict, content: dict, method: str, _params:dict):
     """ process content """
     if method == "send":
         endpoint = os.environ.get('EMAIL_SVC_URL')

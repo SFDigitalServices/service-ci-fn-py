@@ -6,7 +6,7 @@ class Step():
     """ Step Class """
 
     @staticmethod
-    def run(data: dict, content: dict):
+    def run(data: dict, content: dict, params: dict):
         """ run step """
         uses_token = data['uses'].split('/')
         mod_name = uses_token[0]
@@ -19,7 +19,7 @@ class Step():
         print(data)
         print("--- step:content ---")
         print(content)
-        out = mod.process(data, content, method)
+        out = mod.process(data, content, method, params)
         print ("--- step:out ---")
         print (out)
         return out

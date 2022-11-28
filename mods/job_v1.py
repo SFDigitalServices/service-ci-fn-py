@@ -2,17 +2,17 @@
 import threading
 from shared_code.step import Step
 
-def process(data: dict, content: dict, method: str, option:dict = None):
+def process(data: dict, content: dict, method: str, params:dict):
     """ process content """
     if method == 'run':
         out = data_job = data
-        option = option if option else {}
+        params = params if params else {}
         if 'steps' in data_job:
-            step = int(option['step'])-1 if 'step' in option else 0
+            step = int(params['step'])-1 if 'step' in params else 0
             step_len = len(data_job['steps'])
-            limit = int(option['limit']) \
-                if 'limit' in option and \
-                    int(option['limit']) < (step_len - step) \
+            limit = int(params['limit']) \
+                if 'limit' in params and \
+                    int(params['limit']) < (step_len - step) \
                 else (step_len - step)
             print(f"Step {step} Limit {limit} step_len {step_len}")
 
@@ -27,9 +27,9 @@ def process(data: dict, content: dict, method: str, option:dict = None):
                         print("running async")
                         thread = threading.Thread(
                             target=Step.run,
-                            args=(data_step, step_input))
+                            args=(data_step, step_input, params))
                         thread.start()
                     else:
-                        step_input = out = Step.run(data_step, step_input)
+                        step_input = out = Step.run(data_step, step_input, params)
         return out
     return content

@@ -2,7 +2,7 @@
 import os
 from shared_code.formio import Formio
 
-def process(data: dict, content: dict, method: str):
+def process(data: dict, content: dict, method: str, _params:dict):
     """ process content """
     if method == 'submission-get':
         form_id = data['with']['FORMIO_FORM_ID']
