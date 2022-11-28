@@ -36,5 +36,7 @@ def func_jsend_response(body, headers=None, status_code=200):
 def validate_access(req: func.HttpRequest):
     """ validate access method """
     access_key = os.getenv('ACCESS_KEY')
-    if not access_key or req.headers.get('ACCESS_KEY') != access_key:
+    verify_key = req.headers.get('x-apikey') if req.headers.get('x-apikey') \
+        else req.headers.get('ACCESS_KEY')
+    if not access_key or verify_key != access_key:
         raise ValueError("Access Denied")
