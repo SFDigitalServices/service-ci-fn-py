@@ -5,7 +5,7 @@ import requests
 
 def process(data: dict, content: dict, method: str, _params:dict):
     """ process content """
-    if method == "submission":
+    if method == "project-create":
         env = data['with']['ENV']
         endpoint = os.environ.get(f"BLUEBEAM_{env}_URL")
         url = f"{endpoint}/submission"
