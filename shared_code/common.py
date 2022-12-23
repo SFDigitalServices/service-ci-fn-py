@@ -19,15 +19,16 @@ def func_json_response(response, headers=None, json_root="items"):
 
 def func_jsend_response(data, headers=None, status_code=200):
     """ func_jsend_success_response """
-    # check if data is JSON, else wrap in "message"
-    try:
-        json.loads(data)
-    except ValueError as _err:
-        data = {"message": data}
-    if 200 <= status_code < 300:
-        func_response = json.dumps(jsend.success(data))
-    elif 400 <= status_code < 500:
-        func_response = json.dumps(jsend.fail(data))
+    if 200 <= status_code < 500:
+        # check if data is JSON, else wrap in "message"
+        try:
+            json.loads(data)
+        except ValueError as _err:
+            data = {"message": data}
+        if 200 <= status_code < 300:
+            func_response = json.dumps(jsend.success(data))
+        else:
+            func_response = json.dumps(jsend.fail(data))
     else:
         func_response = json.dumps(jsend.error(data))
 
