@@ -22,7 +22,8 @@ def func_jsend_response(data, headers=None, status_code=200):
     if 200 <= status_code < 500:
         # check if data is JSON, else wrap in "message"
         try:
-            json.loads(data)
+            if not isinstance(data, dict):
+                json.loads(data)
         except ValueError as _err:
             data = {"message": data}
         if 200 <= status_code < 300:
