@@ -40,10 +40,14 @@ jobs:
 * `airtable@v1`: Connects to [Airtable](https://airtable.com/)
     * `get`: gets an Airtable record
     * `insert`: insert a record into Airtable base
+* `bluebeam@v1`: Connects to [Bluebeam microservice](https://github.com/SFDigitalServices/bluebeam-microservice)
+    * `project-create`: creates a Bluebeam Project
 * `email@v1`: Connects to [Email microservice](https://github.com/SFDigitalServices/email-microservice-py)
     * `send`: send an email
 * `formio@v1`: Connects to [Form.io](https://www.form.io/)
     * `submission-get`: get a form submission
+* `job@v1`: Run job within a job
+    * `run`: Runs `job`
 * `jsonata@v1`: Connects to [JSONata microservice](https://github.com/SFDigitalServices/jsonata-fn-js)
     * `eval`: evaluates JSONata query [[try](http://try.jsonata.org/)]
 * `pts@v1`: Connects to [Permit Tracking System (PTS) microservice](https://github.com/SFDigitalServices/pts-microservice-fn-py)
