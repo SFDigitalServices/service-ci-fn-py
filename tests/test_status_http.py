@@ -39,7 +39,7 @@ def test_status_http_function_other():
 def test_status_http_function_request_error():
     """ test_status_http_function error """
 
-    with patch('status_http.func_json_response') as mock:
+    with patch('status_http.func_jsend_response') as mock:
         mock.side_effect = ValueError('ERROR_TEST')
         # Construct a mock HTTP request.
         req = func.HttpRequest(
