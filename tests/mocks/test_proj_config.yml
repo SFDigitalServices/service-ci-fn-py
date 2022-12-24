@@ -1,0 +1,6 @@
+jobs:
+  job1:
+    steps:
+      - uses: job/run@v1
+        steps:
+            - uses:  email/send@v1

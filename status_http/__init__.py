@@ -7,27 +7,26 @@ import requests
 import jsend
 import azure.functions as func
 from requests.models import Response
-from shared_code.common import func_json_response
+from shared_code.common import func_jsend_response
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     """ main function for status/http """
     logging.info('Status processed a request.')
 
     try:
-        response = Response()
         if req.get_body() and len(req.get_body()):
-            response.status_code = 202
+            status_code = 202
             # pylint: disable=protected-access
-            response._content = b'"202 Accepted"'
+            body = "202 Accepted"
         else:
-            response.status_code = 200
+            status_code = 200
             # pylint: disable=protected-access
-            response._content = b'"200 OK"'
+            body = "200 OK"
 
         headers = {
             "Access-Control-Allow-Origin": "*"
         }
-        return func_json_response(response, headers, "message")
+        return func_jsend_response(body, headers, status_code)
 
     #pylint: disable=broad-except
     except Exception as err:

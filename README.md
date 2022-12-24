@@ -1,5 +1,6 @@
-# microservice-fn-py [![CircleCI](https://badgen.net/circleci/github/SFDigitalServices/microservice-fn-py/main)](https://circleci.com/gh/SFDigitalServices/microservice-fn-py) [![Coverage Status](https://coveralls.io/repos/github/SFDigitalServices/microservice-fn-py/badge.svg?branch=main)](https://coveralls.io/github/SFDigitalServices/microservice-fn-py?branch=main)
-Azure serverless python function microservice template
+# service-ci-fn-py [![CircleCI](https://badgen.net/circleci/github/SFDigitalServices/service-ci-fn-py/main)](https://circleci.com/gh/SFDigitalServices/service-ci-fn-py) [![Coverage Status](https://coveralls.io/repos/github/SFDigitalServices/service-ci-fn-py/badge.svg?branch=main)](https://coveralls.io/github/SFDigitalServices/service-ci-fn-py?branch=main)
+Service CI Azure serverless python function microservice  
+Lightweight configuration file-based workflow system to enable continuous integration for services interacting various APIs and Webhooks. 
 
 ## `api/status/http`
 Query http status of the serverless function.
@@ -11,6 +12,46 @@ $ curl https://<host>/api/status/http
 
 {"status": "success", "data": {"message": "200 OK"}}
 ```
+
+## `api/run/jobs`
+#### Query Parameters ####
+`project`: name of project configuration  
+`job`: name of job   
+`step`: job step to start  
+`limit`: limit the number of steps to run
+
+### Query
+Example
+```
+$ curl https://<host>/api/run/jobs?project=sample_proj_config&job=job1&step=1&limit=1
+
+{"status": "success", "data": {...}}
+```
+
+## MODS
+This microservice run of concept of leveraging individual modules ([`mods`](./mods)) to interact with various external systems. A mod to used in a `step` within a `job`. A simple one step job that uses version 1 of the email mod to send email looks like this:
+```
+jobs:
+  job1:
+    steps:
+        - uses: email/send@v1
+```
+### List of MODs available
+* `airtable@v1`: Connects to [Airtable](https://airtable.com/)
+    * `get`: gets an Airtable record
+    * `insert`: insert a record into Airtable base
+* `bluebeam@v1`: Connects to [Bluebeam microservice](https://github.com/SFDigitalServices/bluebeam-microservice)
+    * `project-create`: creates a Bluebeam Project
+* `email@v1`: Connects to [Email microservice](https://github.com/SFDigitalServices/email-microservice-py)
+    * `send`: send an email
+* `formio@v1`: Connects to [Form.io](https://www.form.io/)
+    * `submission-get`: get a form submission
+* `job@v1`: Run job within a job
+    * `run`: Runs `job`
+* `jsonata@v1`: Connects to [JSONata microservice](https://github.com/SFDigitalServices/jsonata-fn-js)
+    * `eval`: evaluates JSONata query [[try](http://try.jsonata.org/)]
+* `pts@v1`: Connects to [Permit Tracking System (PTS) microservice](https://github.com/SFDigitalServices/pts-microservice-fn-py)
+    * `permit-create`: creates a building permit application
 
 ## Deployment notes
 #### :warning: [Linux Consumption] Successful slot swaps automatically reverted after a few minutes :warning:
